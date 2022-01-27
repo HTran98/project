@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/admin/header :: head">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<div th:replace="/admin/header :: body"></div>
+
+<!-- //header-ends -->
+<!-- main content start-->
+<div id="page-wrapper">
+	<div class="main-page">
+		<div class="forms">
+			<h3 class="title1">Account</h3>
+			<div class="form-grids row widget-shadow"
+				data-example-id="basic-forms">
+				<div class="form-title">
+					<h4 th:text="${action}"></h4>
+				</div>
+				<div class="form-body">
+					<th:block th:if="${status == 1}">
+						<form th:action="@{/adminPage/accounts/addAccount}" method="POST"
+							th:object="${account}" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Name</label> <input
+									th:field="*{name}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Name"
+									style="margin-left: 113px">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Role</label> <select
+									th:field="*{roleInfo.id}"
+									style="border: 1px solid #ccc; height: 40px; width: 160px; margin-left: 124px">
+
+									<option th:each="role : ${listRoles}"
+										th:text="${role.roleName}" th:value="${role.id}"></option>
+
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Vip</label> <select
+									th:field="*{vips.id}"
+									style="border: 1px solid #ccc; height: 40px; width: 160px; margin-left: 133px">
+
+									<option th:each="vip : ${listVips}" th:text="${vip.name}"
+										th:value="${vip.id}"></option>
+
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Phone</label> <input
+									th:field="*{phone}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Phone"
+									style="margin-left: 110px">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Address</label> <input
+									th:field="*{address}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Address"
+									style="margin-left: 95px">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label> <input
+									th:field="*{email}" type="email" class="form-control"
+									id="exampleInputEmail1" placeholder="email"
+									style="margin-left: 116px" required="required">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">PassWord</label> <input
+									type="password" class="form-control" id="password1"
+									placeholder="password" style="margin-left: 80px">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Confirm PassWord</label> <input
+									th:field="*{password}" type="password" class="form-control"
+									id="password2" placeholder="password">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Gender</label> <input
+									th:field="*{gender}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Name"
+									style="margin-left: 104px">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Type</label> <input
+									th:field="*{type}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Name"
+									style="margin-left: 123px">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputFile">Avatar</label><input
+									th:field="*{multipartFiles}" type="file" name="fileUp0"
+									id="fileUp0" /> <br /> <br /> <img id="reviewImage0"
+									alt="review upload" style="width: 230px;">
+
+							</div>
+
+							<button type="submit" class="btn btn-default">Save</button>
+						</form>
+					</th:block>
+					<th:block th:if="${status == 2}">
+						<form th:action="@{/adminPage/accounts/update}" method="POST"
+							th:object="${account}" enctype="multipart/form-data">
+							<input th:field="*{id}" hidden="true" />
+							<div class="form-group">
+								<label for="exampleInputEmail1">Name</label> <input
+									th:field="*{name}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Name"
+									style="margin-left: 113px">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Role</label> <select
+									th:field="*{roleInfo.id}"
+									style="border: 1px solid #ccc; height: 40px; width: 160px; margin-left: 124px">
+
+									<option th:each="role : ${listRoles}"
+										th:text="${role.roleName}" th:value="${role.id}"></option>
+
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Vip</label> <select
+									th:field="*{vips.id}"
+									style="border: 1px solid #ccc; height: 40px; width: 160px; margin-left: 133px">
+
+									<option th:each="vip : ${listVips}" th:text="${vip.name}"
+										th:value="${vip.id}"></option>
+
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Phone</label> <input
+									th:field="*{phone}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Phone"
+									style="margin-left: 110px">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Address</label> <input
+									th:field="*{address}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Address"
+									style="margin-left: 95px">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label> <input
+									th:field="*{email}" type="email" class="form-control"
+									id="exampleInputEmail1" placeholder="email"
+									style="margin-left: 116px" required="required">
+							</div>
+							<div>
+								<label for="selector1" class="control-label">Change
+									Password</label> <input style="width: 20px; height: 20px; margin-left: 17px"
+									type="checkbox" class="form-control1" id="check">
+
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">PassWord</label> <input
+									type="password" class="form-control" id="password1"
+									placeholder="password" style="margin-left: 80px" disabled="disabled">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Confirm PassWord</label> <input
+									th:field="*{password}" type="password" class="form-control"
+									id="password2" placeholder="password" disabled="disabled">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Gender</label> <input
+									th:field="*{gender}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Name"
+									style="margin-left: 104px">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Type</label> <input
+									th:field="*{type}" type="text" class="form-control"
+									id="exampleInputEmail1" placeholder="Name"
+									style="margin-left: 123px">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputFile">Avatar</label><input
+									th:field="*{multipartFiles}" type="file" name="fileUp0"
+									id="fileUp0" /> <br /> <br /> <img id="reviewImage0"
+									alt="review upload" style="width: 230px;">
+
+							</div>
+
+							<button type="submit" class="btn btn-default">Save</button>
+						</form>
+					</th:block>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+</div>
+<!--footer-->
+<div class="footer">
+	<p>
+		&copy; All Rights Reserved | Design by <a href="#" target="_blank"></a>
+	</p>
+</div>
+<!--//footer-->
+</div>
+<!-- Classie -->
+<script th:src="@{/admin/js/classie.js}"></script>
+<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+<script type="text/javascript">
+fileUp0.onchange = evt => {
+	  const [file] = fileUp0.files
+	  if (file) {
+		  reviewImage0.src = URL.createObjectURL(file)
+	  }
+	}
+
+
+</script>
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById("password1").onchange = validatePassword;
+		document.getElementById("password2").onchange = validatePassword;
+	}
+	function validatePassword() {
+		var pass2 = document.getElementById("password2").value;
+		var pass1 = document.getElementById("password1").value;
+		if (pass1 != pass2)
+			document.getElementById("password2").setCustomValidity(
+					"Password does not match");
+		else
+			document.getElementById("password2").setCustomValidity('');
+
+	}
+</script>
+<script type="text/javascript">
+document.getElementById('check').onchange = function() {
+    document.getElementById('password1').disabled = !this.checked;
+    document.getElementById('password2').disabled = !this.checked;
+};
+</script>
+<!--scrolling js-->
+<script th:src="@{/admin/js/jquery.nicescroll.js}"></script>
+<script th:src="@{/admin/js/scripts.js}"></script>
+<!--//scrolling js-->
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{/admin/js/bootstrap.js}"> </script>
+</body>
+</html>

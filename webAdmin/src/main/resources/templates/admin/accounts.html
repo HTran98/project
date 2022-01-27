@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/admin/header :: head">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<div th:replace="/admin/header :: body"></div>
+
+<!-- //header-ends -->
+<!-- main content start-->
+<div id="page-wrapper">
+	<div class="main-page">
+		<!-- <div class="tables"> -->
+		<h3 class="title1">Account</h3>
+		<a th:href="@{/adminPage/accounts/addAccount}"><button>
+				<i class="fa fa-plus" aria-hidden="true"></i> Add Account
+			</button></a>
+		<div class="bs-example widget-shadow scrolltbl"
+			data-example-id="hoverable-table">
+			<table class="table table-hover" style="width: 150%">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Role</th>
+						<th>Phone</th>
+						<th>Address</th>
+						<th>Email</th>
+						<th>Gender</th>
+						<th>Type</th>
+						<th>Vip</th>
+						<th>Rating</th>
+						<th>Avatar</th>
+						<th>Created At</th>
+						<th>Updated At</th>
+						<th>Edit</th>
+						<th>Delete</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="account, iterStat : ${listAccounts}">
+						<th scope="row" th:text="${iterStat.count}"></th>
+						<td th:text="${account.name}"></td>
+						<td th:text="${account.roleInfo.roleName}"></td>
+						<td th:text="${account.phone}"></td>
+						<td th:text="${account.address}"></td>
+						<td th:text="${account.email}"></td>
+						<td th:text="${account.gender}"></td>
+						<td th:text="${account.type}"></td>
+						<td th:text="${account.vips.name}"></td>
+						<td th:text="${account.rating}"></td>
+						<td><img style="width: 90px"
+							th:src="@{${account.avatar}}"></td>
+						<td th:text="${account.createdAt}"></td>
+						<td th:text="${account.updatedAt}"></td>
+						<td style="text-align: center;"><a
+							th:href="@{/adminPage/accounts/update(id=${account.id})}"><i
+								class="fa fa-pencil" aria-hidden="true"></i></a></td>
+						<td style="text-align: center;"><a
+							th:href="@{/adminPage/accounts/delete(id=${account.id})}"
+							onclick="return confirm('Xác nhận xóa ?');" style=""><i
+								class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+
+					</tr>
+
+
+				</tbody>
+			</table>
+		</div>
+
+
+		<!-- </div> -->
+	</div>
+</div>
+<!--footer-->
+<div class="footer">
+	<p>
+		&copy; All Rights Reserved | Design by <a href="#" target="_blank"></a>
+	</p>
+</div>
+<!--//footer-->
+</div>
+<!-- Classie -->
+<script th:src="@{/admin/js/classie.js}"></script>
+<script>
+	var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
+			.getElementById('showLeftPush'), body = document.body;
+
+	showLeftPush.onclick = function() {
+		classie.toggle(this, 'active');
+		classie.toggle(body, 'cbp-spmenu-push-toright');
+		classie.toggle(menuLeft, 'cbp-spmenu-open');
+		disableOther('showLeftPush');
+	};
+
+	function disableOther(button) {
+		if (button !== 'showLeftPush') {
+			classie.toggle(showLeftPush, 'disabled');
+		}
+	}
+</script>
+<!--scrolling js-->
+<script th:src="@{/admin/js/jquery.nicescroll.js}"></script>
+<script th:src="@{/admin/js/scripts.js}"></script>
+<!--//scrolling js-->
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{/admin/js/bootstrap.js}">
+	
+</script>
+</body>
+</html>
